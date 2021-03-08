@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cookbook/models/meal.dart';
 
 class MealItem extends StatelessWidget {
-  String id;
-  String title;
-  String imageUrl;
-  int duration;
-  Complexity complexity;
-  Affordability affordability;
+  final String id;
+  final String title;
+  final String imageUrl;
+  final int duration;
+  final Complexity complexity;
+  final Affordability affordability;
+  final Function deleteMeal;
 
-  MealItem({
-    this.id,
-    this.imageUrl,
-    this.title,
-    this.duration,
-    this.complexity,
-    this.affordability,
-  });
+  MealItem(
+      {this.id,
+      this.imageUrl,
+      this.title,
+      this.duration,
+      this.complexity,
+      this.affordability,
+      this.deleteMeal});
 
   String get complexityText {
     switch (complexity) {
@@ -51,9 +52,18 @@ class MealItem extends StatelessWidget {
   }
 
   void selectMeal(context) {
-    Navigator.of(context).pushNamed(
+    Navigator.of(context)
+        .pushNamed(
       '/meal-detail',
       arguments: id,
+    )
+        .then(
+      (result) {
+        if (result != null) {
+          print(result);
+          deleteMeal(result);
+        }
+      },
     );
   }
 

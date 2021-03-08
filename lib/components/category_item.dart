@@ -33,9 +33,9 @@ class CategoryItem extends StatelessWidget {
         child: Text(title, style: Theme.of(context).textTheme.headline6),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [color.withOpacity(0.5), color],
             begin: Alignment.bottomLeft,
             end: Alignment.topRight,
+            colors: [color.withOpacity(0.5), color],
           ),
           borderRadius: BorderRadius.circular(15),
         ),
